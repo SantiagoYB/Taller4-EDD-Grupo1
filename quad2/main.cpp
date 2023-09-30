@@ -5,8 +5,7 @@
 #include <fstream>
 #include <sstream>
 using namespace std;
-#include "Punto.h"
-#include "QuadTree.h"
+#include "ArbolQuad.h"
 #include "NodoQuad.h"
  
 int main(int argc, char *argv[]){
