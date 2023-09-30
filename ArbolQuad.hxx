@@ -1,5 +1,4 @@
 #include "ArbolQuad.h"
-#include "NodoQuad.h"
 
 template < class T >
 ArbolQuad<T>::ArbolQuad(){
@@ -8,6 +7,9 @@ ArbolQuad<T>::ArbolQuad(){
 
 template < class T >
 ArbolQuad<T>::ArbolQuad(T val){
+    NodoQuad<T> * nodo = new NodoQuad<T>;
+    nodo->fijarDato(val);
+    this->raiz = nodo;
 };
 
 template < class T >
