@@ -24,12 +24,12 @@ NodoQuad<T>* ArbolQuad<T>::obtenerRaiz() {
 };
 
 template < class T >
-void fijarRaiz(NodoQuad<T>* n_raiz) {
+void ArbolQuad<T>::fijarRaiz(NodoQuad<T>* n_raiz) {
     this->raiz = n_raiz;
 };
 
 template < class T >
-bool esVacio() {
+bool ArbolQuad<T>::esVacio() {
     if((this->raiz)->esHoja()) {
         return true;
     }
@@ -39,12 +39,12 @@ bool esVacio() {
 };
 
 template < class T >
-bool insertarNodo(T val) {
+bool ArbolQuad<T>::insertarNodo(T val) {
     return true;
 };
 
 template < class T >
-void preOrden() {
+void ArbolQuad<T>::preOrden() {
     if(!this->esVacio()){
         std::cout << " " <<this->obtenerDato();
         if(this->raiz->hijoSupIzq == nullptr) {
@@ -63,7 +63,7 @@ void preOrden() {
 };
 
 template < class T >
-void preOrden(NodoQuad<T>* nodo) {
+void ArbolQuad<T>::preOrden(NodoQuad<T>* nodo) {
     std::cout << " " <<this->obtenerDato();
     if(nodo->hijoSupIzq == nullptr) {
         this->preOrden(nodo->hijoSupIzq);
@@ -80,7 +80,7 @@ void preOrden(NodoQuad<T>* nodo) {
 };
 
 template < class T >
-void inOrden() {
+void ArbolQuad<T>::inOrden() {
     if(!this->esVacio()){
         
         if(this->raiz->hijoSupIzq == nullptr) {
@@ -101,7 +101,7 @@ void inOrden() {
 }
 
 template < class T >
-void inOrden(NodoQuad<T>* nodo) {
+void ArbolQuad<T>::inOrden(NodoQuad<T>* nodo) {
     if(nodo->hijoSupIzq == nullptr) {
         this->inOrden(nodo->hijoSupIzq);
     }
@@ -119,7 +119,7 @@ void inOrden(NodoQuad<T>* nodo) {
 };
                 
 template < class T >     
-void posOrden() {
+void ArbolQuad<T>::posOrden() {
     if(!this->esVacio()){
         
         if(this->raiz->hijoSupIzq == nullptr) {
@@ -139,7 +139,7 @@ void posOrden() {
 };
 
 template < class T >
-void posOrden(NodoQuad<T>* nodo) {
+void ArbolQuad<T>::posOrden(NodoQuad<T>* nodo) {
     
     if(nodo->hijoSupIzq == nullptr) {
         this->posOrden(nodo->hijoSupIzq);
@@ -157,7 +157,7 @@ void posOrden(NodoQuad<T>* nodo) {
 };
 
 template < class T >
-void nivelOrden() {
+void ArbolQuad<T>::nivelOrden() {
 
 };
 
