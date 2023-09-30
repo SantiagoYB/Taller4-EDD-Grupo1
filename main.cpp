@@ -29,23 +29,31 @@ int main(int argc, char *argv[]){
     }
         
     std::string linea;
-    std::cout << "Contenido del archivo:" << std::endl;
+    std::cout << "Contenido del archivo:\n";
 
-    bool tmp = false;
-    int dimensiones[2];
-    std::string conenido;
-    while (std::getline(archivo, linea)) {
-        if(!tmp) {
-            dimensiones[0] = linea[0];
-            dimensiones[1] = linea[1];
-        }
-        else if(linea[0] != '#') {
 
+    if (std::getline(archivo, linea)) {
+        std::istringstream iss(linea);
+        int numero1, numero2;
+
+        if (iss >> numero1 >> numero2) {
+            std::cout<<"---------Dimension---------\n";
+            std::cout<<numero1<<"x"<<numero2<<"\n";
+            std::cout<<"---------Dimension---------\n";
+        } else {
+            std::cerr << "La primera línea no contiene dos números válidos.\n";
+            return 1;
         }
-        else {
-            
-        }
+    }else {
+        std::cerr << "El archivo está vacío.\n";
+        return 1;
     }
+
+    std::cout<<"\n---------Restante---------\n";
+    while (std::getline(archivo, linea)) {
+        std::cout << linea << std::endl;
+    }
+    std::cout<<"---------Restante---------\n";
 
     archivo.close();
 
