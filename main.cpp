@@ -1,6 +1,9 @@
-
+//Comando para compilar: g++ -std=c++11 main.cpp -o prueba
+//Comando para ejecutar: ./prueba
 #include <cmath>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 #include "Punto.h"
@@ -9,6 +12,38 @@ using namespace std;
  
 int main()
 {
+    std::string nombre_archivo_lectura;
+    std::string cinUsuario;
+    while(true){
+
+        std::cout << "Ingrese el nombre del archivo que desea leer: ";
+        std::cin >> nombre_archivo_lectura;
+
+        if (nombre_archivo_lectura == "salir") {
+            std::cout << "Ha salido del programa" << std::endl;
+            std::getline(std::cin, cinUsuario);
+            std::stringstream stream(cinUsuario);
+            break;
+        }
+
+        std::ifstream archivo(nombre_archivo_lectura);
+
+        if (!archivo) {
+            std::cerr << "No se pudo abrir el archivo." << std::endl;
+            continue;
+        }
+        
+        std::string linea;
+        std::cout << "Contenido del archivo:" << std::endl;
+
+         while (std::getline(archivo, linea)) {
+            std::cout << linea << std::endl;
+        }
+
+        archivo.close();
+        
+    }
+ 
     QuadTree<int> arbol(Punto<int>(0, 0), Punto<int>(8, 8));
     NodoQuad<int> a(Punto<int>(1, 1), 1);
     NodoQuad<int> b(Punto<int>(2, 5), 2);
