@@ -18,6 +18,8 @@ class ArbolQuad {
     void fijarRaiz(NodoQuad<T>* n_raiz);
     bool insertarNodo(T val);
 
+    void buscarSiguienteNodo(NodoQuad<T> *nodo, T val, NodoQuad<T> *nuevo);
+
     void preOrden();
     void preOrden(NodoQuad<T>* nodo);
     void inOrden();

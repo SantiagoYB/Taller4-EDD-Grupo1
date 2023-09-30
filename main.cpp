@@ -49,26 +49,24 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
+    
     std::cout<<"\n---------Restante---------\n";
     while (std::getline(archivo, linea)) {
         std::cout << linea << std::endl;
+
+        char primerCaracter = linea[0];
+        int numero = primerCaracter - '0';
+        ArbolQuad<int> arbol = ArbolQuad<int>(numero);
+
+        for(int i = 1; i < linea.length(); i++) {
+            primerCaracter = linea[i];
+            numero = primerCaracter - '0';
+            arbol.insertarNodo(numero);
+        }
+        std::cout << std::endl << "Preorden: ";
+        arbol.preOrden();
     }
-    std::cout<<"---------Restante---------\n";
+    std::cout<<"\n---------Restante---------\n";
 
     archivo.close();
-
-    /*
-    QuadTree<int> arbol(Punto<int>(0, 0), Punto<int>(8, 8));
-    NodoQuad<int> a(Punto<int>(1, 1), 1);
-    NodoQuad<int> b(Punto<int>(2, 5), 2);
-    NodoQuad<int> c(Punto<int>(7, 6), 3);
-    arbol.insert(&a);
-    arbol.insert(&b);
-    arbol.insert(&c);
-    cout << "Buscar nodo a: " << arbol.search(Punto<int>(1, 1))->obtenerData() << "\n";
-    cout << "Buscar nodo b: " << arbol.search(Punto<int>(2, 5))->obtenerData() << "\n";
-    cout << "Buscar nodo c: " << arbol.search(Punto<int>(7, 6))->obtenerData() << "\n";
-    cout << "Nodo que no existe: " << arbol.search(Punto<int>(5, 5));
-    return 0;
-    */
 }
