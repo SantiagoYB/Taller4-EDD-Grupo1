@@ -21,6 +21,11 @@ ArbolQuad<T>::~ArbolQuad() {
 };
 
 template < class T >
+bool ArbolQuad<T>::esVacio() {
+    return this->raiz == NULL; //Si no tenemos raiz, el arbol es vacio.
+};
+
+template < class T >
 NodoQuad<T>* ArbolQuad<T>::obtenerRaiz() {
     return this->raiz;
 };
@@ -31,16 +36,6 @@ void ArbolQuad<T>::fijarRaiz(NodoQuad<T>* n_raiz) {
 };
 
 template < class T >
-bool ArbolQuad<T>::esVacio() {
-    if((this->raiz)->esHoja()) {
-        return true;
-    }
-    else {
-        return false;
-    }
-};
-
-template < class T >
 bool ArbolQuad<T>::insertarNodo(T val) {
     return true;
 };
@@ -48,35 +43,23 @@ bool ArbolQuad<T>::insertarNodo(T val) {
 template < class T >
 void ArbolQuad<T>::preOrden() {
     if(!this->esVacio()){
-        std::cout << " " <<this->obtenerDato();
-        if(this->raiz->hijoSupIzq == nullptr) {
-            this->preOrden(this->raiz->hijoSupIzq);
-        }
-        if(this->raiz->hijoSupDer == nullptr) {
-            this->preOrden(this->raiz->hijoSupDer);
-        }
-        if(this->raiz->hijoInfIzq == nullptr) {
-            this->preOrden(this->raiz->hijoInfIzq);
-        }
-        if(this->raiz->hijoInfDer == nullptr) {
-            this->preOrden(this->raiz->hijoInfDer);
-        }
+        this->preOrden(this->raiz);
     }
 };
 
 template < class T >
 void ArbolQuad<T>::preOrden(NodoQuad<T>* nodo) {
     std::cout << " " <<this->obtenerDato();
-    if(nodo->hijoSupIzq == nullptr) {
+    if(nodo->hijoSupIzq != nullptr) {
         this->preOrden(nodo->hijoSupIzq);
     }
-    if(nodo->hijoSupDer == nullptr) {
+    if(nodo->hijoSupDer != nullptr) {
         this->preOrden(nodo->hijoSupDer);
     }
-    if(nodo->hijoInfIzq == nullptr) {
+    if(nodo->hijoInfIzq != nullptr) {
         this->preOrden(nodo->hijoInfIzq);
     }
-    if(nodo->hijoInfDer == nullptr) {
+    if(nodo->hijoInfDer != nullptr) {
         this->preOrden(nodo->hijoInfDer);
     }
 };

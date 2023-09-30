@@ -29,7 +29,6 @@ NodoQuad<T>::~NodoQuad() {
   }
 }
 
-
 template < class T>
 T NodoQuad<T>::obtenerDato() {
   return this ->dato;
