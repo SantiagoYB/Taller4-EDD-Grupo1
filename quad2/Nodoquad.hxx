@@ -25,7 +25,7 @@ NodoQuad<T>::~NodoQuad() {
   }
   if(this->hijoSupDer != nullptr){
     delete this->hijoSupDer;
-    this->hijoSupDer = nullptr
+    this->hijoSupDer = nullptr;
   }
 }
 
