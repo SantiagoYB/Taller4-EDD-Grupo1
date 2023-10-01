@@ -10,13 +10,15 @@ class ArbolQuad {
     ArbolQuad();
     ArbolQuad(int val);
     ~ArbolQuad();
-    bool esVacio();
 
+    int datoRaiz();
     NodoQuad* obtenerRaiz();
     void fijarRaiz(NodoQuad* n_raiz);
-    bool insertarNodo(int val);
 
-    void buscarSiguienteNodo(NodoQuad* nodo, int val, NodoQuad* nuevo);
+    bool esVacio();
+
+    bool insertarNodo(int val);
+    bool insertarNodoRecursivo(NodoQuad* nodo, int val);
 
     void preOrden();
     void preOrden(NodoQuad* nodo);
@@ -25,6 +27,8 @@ class ArbolQuad {
     void posOrden();
     void posOrden(NodoQuad* nodo);
     void nivelOrden();
+
+    
 };
 
 #include "ArbolQuad.hxx"

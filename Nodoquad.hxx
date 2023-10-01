@@ -69,3 +69,7 @@ void NodoQuad::fijarHijoInfDer(NodoQuad* ider) {
 bool NodoQuad::esHoja() {
   return (this->hijoSupIzq == NULL && this->hijoSupDer == NULL && this->hijoInfIzq == NULL && this->hijoInfDer == NULL);
 }
+
+bool NodoQuad::esCompleto() {
+  return (this->hijoSupIzq != NULL && this->hijoSupDer != NULL && this->hijoInfIzq != NULL && this->hijoInfDer != NULL);
+}

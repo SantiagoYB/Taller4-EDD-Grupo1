@@ -27,6 +27,7 @@ class NodoQuad {
     void fijarHijoInfDer(NodoQuad* ider);
 
     bool esHoja();
+    bool esCompleto();
 };
 
 #include "NodoQuad.hxx"

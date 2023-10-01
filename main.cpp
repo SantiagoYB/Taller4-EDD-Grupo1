@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-using namespace std;
 #include "ArbolQuad.h"
  
 int main(int argc, char *argv[]){
@@ -59,7 +58,11 @@ int main(int argc, char *argv[]){
         for(int i = 1; i < linea.length(); i++) {
             primerCaracter = linea[i];
             numero = primerCaracter - '0';
+            //std::cout << "Numero a insertar: " << numero << "\n";
             arbol.insertarNodo(numero);
+            //std::cout << std::endl << "\nPreorden: ";
+            //arbol.preOrden();
+            //std::cout << "\n";
         }
         std::cout << std::endl << "Preorden: ";
         arbol.preOrden();
@@ -68,3 +71,9 @@ int main(int argc, char *argv[]){
 
     archivo.close();
 }
+
+
+
+
+
+

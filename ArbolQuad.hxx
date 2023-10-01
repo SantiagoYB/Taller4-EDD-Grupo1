@@ -18,9 +18,9 @@ ArbolQuad::~ArbolQuad() {
     } 
 };
 
-bool ArbolQuad::esVacio() {
-    return this->raiz == NULL;
-};
+int ArbolQuad::datoRaiz() {
+    return this->raiz->obtenerDato();
+}
 
 NodoQuad* ArbolQuad::obtenerRaiz() {
     return this->raiz;
@@ -30,47 +30,82 @@ void ArbolQuad::fijarRaiz(NodoQuad* n_raiz) {
     this->raiz = n_raiz;
 };
 
-bool ArbolQuad::insertarNodo(int val) {
-    NodoQuad* nodo = new NodoQuad();
-    nodo->fijarDato(val);
-    // Buscar nodo padre
-    buscarSiguienteNodo(this->raiz, val, nodo);
-    
-    return true;
+bool ArbolQuad::esVacio() {
+    return (this->raiz == NULL);
 };
 
-void ArbolQuad::buscarSiguienteNodo(NodoQuad* nodo, int val, NodoQuad* nuevo) {
-    if (nodo->obtenerHijoSupIzq() == nullptr) {
+bool ArbolQuad::insertarNodo(int val) {
+    
+    if(this->esVacio()) {
+        this->raiz->fijarDato(val);
+        return true;
+    } else {
+        return this->insertarNodoRecursivo(this->raiz, val);
+    }
+};
+
+bool ArbolQuad::insertarNodoRecursivo(NodoQuad* nodo, int val){
+    if(nodo == NULL){
+        return false;
+    }
+
+    if(nodo->esCompleto()){
+        return false;
+    }
+
+    bool insertado = false;
+
+    //El hijo no existe, crea un nuevo y establece el dato.
+    if(nodo->obtenerHijoSupIzq() == NULL) {
+        NodoQuad* nuevo = new NodoQuad(val);
         nodo->fijarHijoSupIzq(nuevo);
-        return;
-    }
-    else if (nodo->obtenerHijoSupIzq()->obtenerDato() == 2) {
-        buscarSiguienteNodo(nodo->obtenerHijoSupIzq(), val, nuevo);
-    }
-
-    if (nodo->obtenerHijoSupDer() == nullptr) {
-        nodo->fijarHijoSupDer(nuevo);
-        return;
-    }
-    else if (nodo->obtenerHijoSupDer()->obtenerDato() == 2) {
-        buscarSiguienteNodo(nodo->obtenerHijoSupDer(), val, nuevo);
+        insertado = true;
+    } 
+    //Si el hijo existe pero es igual a 2 y NO esta completo, llamar recursividad ahi
+    else if(nodo->obtenerHijoSupIzq()->obtenerDato() == 2 && !nodo->obtenerHijoSupIzq()->esCompleto()){
+        insertado = insertarNodoRecursivo(nodo->obtenerHijoSupIzq(), val);
     }
 
-    if (nodo->obtenerHijoInfDer() == nullptr) {
-        nodo->fijarHijoInfDer(nuevo);
-        return;
-    }
-    else if (nodo->obtenerHijoInfDer()->obtenerDato() == 2) {
-        buscarSiguienteNodo(nodo->obtenerHijoInfDer(), val, nuevo);
+    if(!insertado){
+        //El hijo no existe, crea un nuevo y establece el dato.
+        if(nodo->obtenerHijoSupDer() == NULL){
+            NodoQuad* nuevo = new NodoQuad(val);
+            nodo->fijarHijoSupDer(nuevo);
+            insertado = true;
+        } 
+        //Si el hijo existe pero es igual a 2 y NO esta completo, llamar recursividad ahi
+        else if(nodo->obtenerHijoSupDer()->obtenerDato() == 2 && !nodo->obtenerHijoSupDer()->esCompleto()){
+            insertado = insertarNodoRecursivo(nodo->obtenerHijoSupDer(), val);
+        }
     }
 
-    if (nodo->obtenerHijoInfIzq() == nullptr) {
-        nodo->fijarHijoInfIzq(nuevo);
-        return;
+    if(!insertado){
+        //El hijo no existe, crea un nuevo y establece el dato.
+        if(nodo->obtenerHijoInfDer() == NULL){
+            NodoQuad* nuevo = new NodoQuad(val);
+            nodo->fijarHijoInfDer(nuevo);
+            insertado = true;
+        } 
+        //Si el hijo existe pero es igual a 2 y NO esta completo, llamar recursividad ahi
+        else if(nodo->obtenerHijoInfDer()->obtenerDato() == 2 && !nodo->obtenerHijoInfDer()->esCompleto()){
+            insertado = insertarNodoRecursivo(nodo->obtenerHijoInfDer(), val);
+        }
     }
-    else if (nodo->obtenerHijoInfIzq()->obtenerDato() == 2) {
-        buscarSiguienteNodo(nodo->obtenerHijoInfIzq(), val, nuevo);
+
+    if(!insertado){
+        //El hijo no existe, crea un nuevo y establece el dato.
+        if(nodo->obtenerHijoInfIzq() == NULL){
+            NodoQuad* nuevo = new NodoQuad(val);
+            nodo->fijarHijoInfIzq(nuevo);
+            insertado = true;
+        } 
+        //Si el hijo existe pero es igual a 2 y NO esta completo, llamar recursividad ahi
+        else if(nodo->obtenerHijoInfIzq()->obtenerDato() == 2 && !nodo->obtenerHijoInfIzq()->esCompleto()){
+            insertado = insertarNodoRecursivo(nodo->obtenerHijoInfIzq(), val);
+        }
     }
+
+    return insertado;
 }
 
 void ArbolQuad::preOrden() {
@@ -81,19 +116,19 @@ void ArbolQuad::preOrden() {
 
 void ArbolQuad::preOrden(NodoQuad* nodo) {
     std::cout << " " << nodo->obtenerDato();
-    if (nodo->obtenerHijoSupIzq() != nullptr) {
+    if (nodo->obtenerHijoSupIzq() != NULL) {
         this->preOrden(nodo->obtenerHijoSupIzq());
     }
 
-    if (nodo->obtenerHijoSupDer() != nullptr) {
+    if (nodo->obtenerHijoSupDer() != NULL) {
         this->preOrden(nodo->obtenerHijoSupDer());
     }
 
-    if (nodo->obtenerHijoInfDer() != nullptr) {
+    if (nodo->obtenerHijoInfDer() != NULL) {
         this->preOrden(nodo->obtenerHijoInfDer());
     }
 
-    if (nodo->obtenerHijoInfIzq() != nullptr) {
+    if (nodo->obtenerHijoInfIzq() != NULL) {
         this->preOrden(nodo->obtenerHijoInfIzq());
     }
 }
