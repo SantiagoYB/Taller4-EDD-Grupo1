@@ -64,11 +64,10 @@ int main(int argc, char *argv[]){
             //arbol.preOrden();
             //std::cout << "\n";
         }
+        std::cout<<"\n---------Restante---------\n";
         std::cout << std::endl << "Preorden: ";
         arbol.preOrden();
     }
-    std::cout<<"\n---------Restante---------\n";
-
     archivo.close();
 }
 
