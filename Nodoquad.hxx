@@ -1,87 +1,71 @@
 #include "NodoQuad.h"
 
-template < class T>
-NodoQuad<T>::NodoQuad() {
-  this->hijoSupIzq = nullptr;
-  this->hijoSupDer = nullptr;
-  this->hijoInfIzq = nullptr;
-  this->hijoInfDer = nullptr;
+NodoQuad::NodoQuad() {
+  this->hijoSupIzq = NULL;
+  this->hijoSupDer = NULL;
+  this->hijoInfIzq = NULL;
+  this->hijoInfDer = NULL;
 }
 
-template < class T>
-NodoQuad<T>::NodoQuad(T val) {
+NodoQuad::NodoQuad(int val) {
   this->dato = val;
-  this->hijoSupIzq = nullptr;
-  this->hijoSupDer = nullptr;
-  this->hijoInfIzq = nullptr;
-  this->hijoInfDer = nullptr;
+  this->hijoSupIzq = NULL;
+  this->hijoSupDer = NULL;
+  this->hijoInfIzq = NULL;
+  this->hijoInfDer = NULL;
 }
 
-template < class T>
-NodoQuad<T>::~NodoQuad() {
-  if (this->hijoSupIzq != nullptr){
+NodoQuad::~NodoQuad() {
+  if (this->hijoSupIzq != NULL){
     delete this->hijoSupIzq ;
-    this->hijoSupIzq = nullptr;
+    this->hijoSupIzq = NULL;
   }
-  if(this->hijoSupDer != nullptr){
+  if(this->hijoSupDer != NULL){
     delete this->hijoSupDer;
-    this->hijoSupDer = nullptr;
+    this->hijoSupDer = NULL;
   }
 }
 
-template < class T>
-T NodoQuad<T>::obtenerDato() {
-  return this ->dato;
+int NodoQuad::obtenerDato() {
+  return this->dato;
 }
 
-template < class T>
-NodoQuad<T>* NodoQuad<T>::obtenerHijoSupIzq() {
+NodoQuad* NodoQuad::obtenerHijoSupIzq() {
   return this->hijoSupIzq;
 }
 
-template < class T>
-NodoQuad<T>* NodoQuad<T>::obtenerHijoSupDer() {
+NodoQuad* NodoQuad::obtenerHijoSupDer() {
   return this->hijoSupDer;
 }
 
-template < class T>
-NodoQuad<T>* NodoQuad<T>::obtenerHijoInfIzq() {
+NodoQuad* NodoQuad::obtenerHijoInfIzq() {
   return this->hijoInfIzq;
 }
 
-template < class T>
-NodoQuad<T>* NodoQuad<T>::obtenerHijoInfDer() {
+NodoQuad* NodoQuad::obtenerHijoInfDer() {
   return this->hijoInfDer;
 }
 
-template < class T>
-void NodoQuad<T>::fijarDato(T val) {
+void NodoQuad::fijarDato(int val) {
   this->dato = val;
 }
 
-template < class T>
-void NodoQuad<T>::fijarHijoSupIzq(NodoQuad<T>* sizq) {
+void NodoQuad::fijarHijoSupIzq(NodoQuad* sizq) {
   this->hijoSupIzq = sizq;
 }
 
-template < class T >
-void NodoQuad<T>::fijarHijoSupDer(NodoQuad<T>* sder) {
+void NodoQuad::fijarHijoSupDer(NodoQuad* sder) {
   this->hijoSupDer = sder;
 }
 
-template < class T >
-void NodoQuad<T>::fijarHijoInfIzq(NodoQuad<T>* iizq) {
+void NodoQuad::fijarHijoInfIzq(NodoQuad* iizq) {
   this->hijoInfIzq = iizq;
 }
 
-template < class T >
-void NodoQuad<T>::fijarHijoInfDer(NodoQuad<T>* ider) {
+void NodoQuad::fijarHijoInfDer(NodoQuad* ider) {
   this->hijoInfDer = ider;
 }
 
-
-
-template < class T >
-bool NodoQuad<T>::esHoja() {
-  return (this->hijoSupIzq == nullptr && this->hijoSupDer == nullptr && this->hijoInfIzq == nullptr && this->hijoInfDer == nullptr);
+bool NodoQuad::esHoja() {
+  return (this->hijoSupIzq == NULL && this->hijoSupDer == NULL && this->hijoInfIzq == NULL && this->hijoInfDer == NULL);
 }

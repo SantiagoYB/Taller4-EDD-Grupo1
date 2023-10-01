@@ -6,7 +6,6 @@
 #include <sstream>
 using namespace std;
 #include "ArbolQuad.h"
-#include "NodoQuad.h"
  
 int main(int argc, char *argv[]){
     std::string nombre_archivo_lectura;
@@ -49,14 +48,13 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
-    
     std::cout<<"\n---------Restante---------\n";
     while (std::getline(archivo, linea)) {
         std::cout << linea << std::endl;
 
         char primerCaracter = linea[0];
         int numero = primerCaracter - '0';
-        ArbolQuad<int> arbol = ArbolQuad<int>(numero);
+        ArbolQuad arbol(numero);
 
         for(int i = 1; i < linea.length(); i++) {
             primerCaracter = linea[i];

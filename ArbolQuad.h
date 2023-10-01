@@ -1,31 +1,29 @@
-#ifndef _ArbolQuad_H__
-#define _ArbolQuad_H__
+#ifndef _ARBOLQUAD_H__
+#define _ARBOLQUAD_H__
 
 #include "NodoQuad.h"
 
-template < class T >
 class ArbolQuad {
   protected:
-    NodoQuad<T>* raiz;
+    NodoQuad* raiz;
   public:
     ArbolQuad();
-    ArbolQuad(T val);
+    ArbolQuad(int val);
     ~ArbolQuad();
     bool esVacio();
-    T datoRaiz();
 
-    NodoQuad<T>* obtenerRaiz();
-    void fijarRaiz(NodoQuad<T>* n_raiz);
-    bool insertarNodo(T val);
+    NodoQuad* obtenerRaiz();
+    void fijarRaiz(NodoQuad* n_raiz);
+    bool insertarNodo(int val);
 
-    void buscarSiguienteNodo(NodoQuad<T> *nodo, T val, NodoQuad<T> *nuevo);
+    void buscarSiguienteNodo(NodoQuad* nodo, int val, NodoQuad* nuevo);
 
     void preOrden();
-    void preOrden(NodoQuad<T>* nodo);
+    void preOrden(NodoQuad* nodo);
     void inOrden();
-    void inOrden(NodoQuad<T>* nodo);
+    void inOrden(NodoQuad* nodo);
     void posOrden();
-    void posOrden(NodoQuad<T>* nodo);
+    void posOrden(NodoQuad* nodo);
     void nivelOrden();
 };
 

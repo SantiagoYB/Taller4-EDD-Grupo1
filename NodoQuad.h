@@ -1,32 +1,32 @@
 #ifndef __NODOQUAD_H__
 #define __NODOQUAD_H__
 
-template < class T >
 class NodoQuad {
   private:
-      T dato;
-      NodoQuad<T>* hijoSupIzq;
-      NodoQuad<T>* hijoSupDer;
-      NodoQuad<T>* hijoInfIzq;
-      NodoQuad<T>* hijoInfDer;
+    int dato;
+    NodoQuad* hijoSupIzq;
+    NodoQuad* hijoSupDer;
+    NodoQuad* hijoInfIzq;
+    NodoQuad* hijoInfDer;
   public:
-      NodoQuad();
-      NodoQuad(T val);
-      ~NodoQuad();
+    NodoQuad();
+    NodoQuad(int val);
+    ~NodoQuad();
 
-      T obtenerDato();
-      NodoQuad<T>* obtenerHijoSupIzq();
-      NodoQuad<T>* obtenerHijoSupDer();
-      NodoQuad<T>* obtenerHijoInfIzq();
-      NodoQuad<T>* obtenerHijoInfDer();
+    int obtenerDato();
+    void fijarDato(int val);
 
-      void fijarDato(T val);
-      void fijarHijoSupIzq(NodoQuad<T>* sizq);
-      void fijarHijoSupDer(NodoQuad<T>* sder);
-      void fijarHijoInfIzq(NodoQuad<T>* iizq);
-      void fijarHijoInfDer(NodoQuad<T>* ider);
+    NodoQuad* obtenerHijoSupIzq();
+    NodoQuad* obtenerHijoSupDer();
+    NodoQuad* obtenerHijoInfIzq();
+    NodoQuad* obtenerHijoInfDer();
 
-      bool esHoja();
+    void fijarHijoSupIzq(NodoQuad* sizq);
+    void fijarHijoSupDer(NodoQuad* sder);
+    void fijarHijoInfIzq(NodoQuad* iizq);
+    void fijarHijoInfDer(NodoQuad* ider);
+
+    bool esHoja();
 };
 
 #include "NodoQuad.hxx"
