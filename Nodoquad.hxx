@@ -71,5 +71,35 @@ bool NodoQuad::esHoja() {
 }
 
 bool NodoQuad::esCompleto() {
-  return (this->hijoSupIzq != NULL && this->hijoSupDer != NULL && this->hijoInfIzq != NULL && this->hijoInfDer != NULL);
+  bool completo = true;
+
+  if(this->hijoSupIzq == NULL){
+    completo = false;
+  }
+  else if(this->hijoSupIzq->obtenerDato() == 2){
+    completo = completo && this->hijoSupIzq->esCompleto();
+  }
+
+  if(this->hijoSupDer == NULL){
+    completo = false;
+  }
+  else if(this->hijoSupDer->obtenerDato() == 2){
+    completo = completo && this->hijoSupDer->esCompleto();
+  }
+
+  if(this->hijoInfDer == NULL){
+    completo = false;
+  }
+  else if(this->hijoInfDer->obtenerDato() == 2){
+    completo = completo && this->hijoInfDer->esCompleto();
+  }
+
+  if(this->hijoInfIzq == NULL){
+    completo = false;
+  }
+  else if(this->hijoInfIzq->obtenerDato() == 2){
+    completo = completo && this->hijoInfIzq->esCompleto();
+  }
+
+  return completo;
 }

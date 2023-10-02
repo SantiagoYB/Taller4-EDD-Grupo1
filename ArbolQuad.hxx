@@ -45,14 +45,6 @@ bool ArbolQuad::insertarNodo(int val) {
 };
 
 bool ArbolQuad::insertarNodoRecursivo(NodoQuad* nodo, int val){
-    if(nodo == NULL){
-        return false;
-    }
-
-    if(nodo->esCompleto()){
-        return false;
-    }
-
     bool insertado = false;
 
     //El hijo no existe, crea un nuevo y establece el dato.
