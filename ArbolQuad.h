@@ -28,6 +28,8 @@ class ArbolQuad {
     void posOrden(NodoQuad* nodo);
     void nivelOrden();
 
+    int** crearMatriz(int tamano);
+    int** llenarMatriz(int** matriz, NodoQuad* nodo, int posX, int posY, int tam);
     
 };
 

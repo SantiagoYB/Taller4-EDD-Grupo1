@@ -139,3 +139,31 @@ void ArbolQuad::posOrden(NodoQuad* nodo) {
 
 void ArbolQuad::nivelOrden() {
 }
+
+int** ArbolQuad::crearMatriz(int tamano) {
+    int** matrix = new int*[tamano];
+    for (int i = 0; i < tamano; i++) {
+        matrix[i] = new int[tamano];
+    }
+    return matrix;
+}
+
+int** ArbolQuad::llenarMatriz(int** matriz, NodoQuad* nodo, int posX, int posY, int tam) {
+    if (nodo->obtenerDato() == 1 || nodo->obtenerDato() == 0) {
+        int color = nodo->obtenerDato();
+        for (int i = posX; i<posX+tam; i++) {
+            for (int j = posY; j<posY+tam; j++) {
+                matriz[i][j] = color;
+            }
+        }
+    } else {
+        // llamar 4 veces, una para cada hijo
+        tam = tam/2;
+        matriz = llenarMatriz(matriz, nodo->obtenerHijoSupIzq(), posX, posY, tam);
+        matriz = llenarMatriz(matriz, nodo->obtenerHijoSupDer(), posX, posY+tam, tam);
+        matriz = llenarMatriz(matriz, nodo->obtenerHijoInfDer(), posX+tam, posY+tam, tam);
+        matriz = llenarMatriz(matriz, nodo->obtenerHijoInfIzq(), posX+tam, posY, tam);
+    }
+
+    return matriz;
+}

@@ -29,10 +29,10 @@ int main(int argc, char *argv[]){
     std::string linea;
     std::cout << "Contenido del archivo:\n";
 
-
+    int numero1, numero2;
     if (std::getline(archivo, linea)) {
         std::istringstream iss(linea);
-        int numero1, numero2;
+        
 
         if (iss >> numero1 >> numero2) {
             std::cout<<"---------Dimension---------\n";
@@ -67,7 +67,23 @@ int main(int argc, char *argv[]){
         std::cout<<"\n---------Restante---------\n";
         std::cout << std::endl << "Preorden: ";
         arbol.preOrden();
+
+        int** matriz = arbol.llenarMatriz(arbol.crearMatriz(numero1), arbol.obtenerRaiz(), 0, 0, numero1);
+
+        std::ofstream archivo("imagen.pbm");
+        archivo << "P1\n";
+        archivo << "# Imagen: "+nombre_archivo_lectura+"\n";
+        archivo << numero1 << " " << numero2 << "\n";
+        for(int i = 0; i < numero1; i++) {
+            for(int j = 0; j < numero2; j++) {
+                archivo << matriz[i][j];
+            }
+            archivo << "\n";
+        }
+        
     }
+
+    
     archivo.close();
 }
 
