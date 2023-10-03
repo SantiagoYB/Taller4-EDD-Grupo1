@@ -125,21 +125,6 @@ void ArbolQuad::preOrden(NodoQuad* nodo) {
     }
 }
 
-void ArbolQuad::inOrden() {
-}
-
-void ArbolQuad::inOrden(NodoQuad* nodo) {
-}
-
-void ArbolQuad::posOrden() {
-}
-
-void ArbolQuad::posOrden(NodoQuad* nodo) {
-}
-
-void ArbolQuad::nivelOrden() {
-}
-
 int** ArbolQuad::crearMatriz(int tamano) {
     int** matrix = new int*[tamano];
     for (int i = 0; i < tamano; i++) {

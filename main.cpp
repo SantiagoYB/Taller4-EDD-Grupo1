@@ -1,31 +1,59 @@
 //Comando para compilar: g++ -std=c++11 main.cpp -o prueba
 //Comando para ejecutar: ./prueba
-//#include <cmath>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include "ArbolQuad.h"
  
 int main(int argc, char *argv[]){
-    std::string nombre_archivo_lectura;
+    std::string nombre_archivo_lectura, nombre_archivo_salida;
     std::string cinUsuario;
 
-    if (argc < 2) {
-        std::cout << "Ingresea el nombre del archivo." << std::endl;
-        return 1; // Salir con un código de error
-    }
-    if(argc - 1 != 1) {
-        std::cout << "Ingrese solamente el nombre del archivo.";
+    if (argc != 5) {
+        std::cerr << "Para ejecutar el programa inicielo de la siguiente manera: \nnombre_programa -s <imagen_de_entrada.qt> -t <archivo_de_salida.pbm>" << std::endl;
         return 1;
     }
 
-    std::ifstream archivo(argv[1]);//Se decide cual archivo txt va a leer!!!
+    // Verificar archivo de entrada y salida
+    for (int i = 1; i < argc; i += 2) {
+        std::string bandera = argv[i];
+        std::string valor = argv[i + 1];
+
+        if (bandera == "-s") {
+            //Verifica la extension
+            if(valor.length() >= 3 && valor.substr(valor.length() - 3) == ".qt") {
+                nombre_archivo_lectura = valor;
+            }
+            else {
+                std::cout << "Debe ingresar un archivo de entrada con extension .qt";
+                return 1;
+            }  
+        } 
+        else if (bandera == "-t") {
+            //Verifica la extension
+            if(valor.length() >= 4 && valor.substr(valor.length() - 4) == ".pbm") {
+                nombre_archivo_salida = valor;
+            }
+            else {
+                std::cout << "Debe ingresar un archivo de salida con extension .pbm";
+                return 1;
+            }
+        } 
+        else {
+            std::cerr << "Bandera invalida: " << bandera << std::endl;
+            std::cerr << "Para ejecutar el programa inicielo de la siguiente manera: \nnombre_programa -s <imagen_de_entrada.qt> -t <archivo_de_salida.pbm>" << std::endl;
+            return 1;
+        }
+    }
+
+    //Se decide cual archivo txt va a leer!!!
+    std::ifstream archivo(nombre_archivo_lectura);
 
     if (!archivo.is_open()) {
         std::cerr << "No se pudo abrir el archivo." <<"\n";
         return 1;
     }
-        
+
     std::string linea;
     std::cout << "Contenido del archivo:\n";
 
@@ -58,11 +86,7 @@ int main(int argc, char *argv[]){
         for(int i = 1; i < linea.length(); i++) {
             primerCaracter = linea[i];
             numero = primerCaracter - '0';
-            //std::cout << "Numero a insertar: " << numero << "\n";
             arbol.insertarNodo(numero);
-            //std::cout << std::endl << "\nPreorden: ";
-            //arbol.preOrden();
-            //std::cout << "\n";
         }
         std::cout<<"\n---------Restante---------\n";
         std::cout << std::endl << "Preorden: ";
@@ -70,7 +94,7 @@ int main(int argc, char *argv[]){
 
         int** matriz = arbol.llenarMatriz(arbol.crearMatriz(numero1), arbol.obtenerRaiz(), 0, 0, numero1);
 
-        std::ofstream archivo("imagen.pbm");
+        std::ofstream archivo(nombre_archivo_salida);
         archivo << "P1\n";
         archivo << "# Imagen: "+nombre_archivo_lectura+"\n";
         archivo << numero1 << " " << numero2 << "\n";
@@ -79,12 +103,10 @@ int main(int argc, char *argv[]){
                 archivo << matriz[i][j];
             }
             archivo << "\n";
-        }
-        
+        } 
     }
-
-    
     archivo.close();
+    std::cout << std::endl << "Se ha creado el archivo " << nombre_archivo_salida << std::endl;
 }
 
 

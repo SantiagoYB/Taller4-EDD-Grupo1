@@ -22,11 +22,6 @@ class ArbolQuad {
 
     void preOrden();
     void preOrden(NodoQuad* nodo);
-    void inOrden();
-    void inOrden(NodoQuad* nodo);
-    void posOrden();
-    void posOrden(NodoQuad* nodo);
-    void nivelOrden();
 
     int** crearMatriz(int tamano);
     int** llenarMatriz(int** matriz, NodoQuad* nodo, int posX, int posY, int tam);
