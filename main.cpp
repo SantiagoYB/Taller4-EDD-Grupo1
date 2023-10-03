@@ -9,39 +9,25 @@ int main(int argc, char *argv[]){
     std::string nombre_archivo_lectura, nombre_archivo_salida;
     std::string cinUsuario;
 
-    if (argc != 5) {
-        std::cerr << "Para ejecutar el programa inicielo de la siguiente manera: \nnombre_programa -s <imagen_de_entrada.qt> -t <archivo_de_salida.pbm>" << std::endl;
+    if (argc != 3) {
+        std::cerr << "Para ejecutar el programa inicielo de la siguiente manera: \nnombre_programa <imagen_de_entrada.qt> <archivo_de_salida.pbm>" << std::endl;
         return 1;
     }
 
     // Verificar archivo de entrada y salida
-    for (int i = 1; i < argc; i += 2) {
-        std::string bandera = argv[i];
-        std::string valor = argv[i + 1];
+    for (int i = 1; i < argc; i++) {
+        std::string valor = argv[i];
 
-        if (bandera == "-s") {
+        if (valor.length() >= 3 && valor.substr(valor.length() - 3) == ".qt") {
             //Verifica la extension
-            if(valor.length() >= 3 && valor.substr(valor.length() - 3) == ".qt") {
-                nombre_archivo_lectura = valor;
-            }
-            else {
-                std::cout << "Debe ingresar un archivo de entrada con extension .qt";
-                return 1;
-            }  
+            nombre_archivo_lectura = valor;
         } 
-        else if (bandera == "-t") {
+        else if (valor.length() >= 4 && valor.substr(valor.length() - 4) == ".pbm") {
             //Verifica la extension
-            if(valor.length() >= 4 && valor.substr(valor.length() - 4) == ".pbm") {
-                nombre_archivo_salida = valor;
-            }
-            else {
-                std::cout << "Debe ingresar un archivo de salida con extension .pbm";
-                return 1;
-            }
+            nombre_archivo_salida = valor;
         } 
         else {
-            std::cerr << "Bandera invalida: " << bandera << std::endl;
-            std::cerr << "Para ejecutar el programa inicielo de la siguiente manera: \nnombre_programa -s <imagen_de_entrada.qt> -t <archivo_de_salida.pbm>" << std::endl;
+            std::cerr << "Para ejecutar el programa inicielo de la siguiente manera: \nnombre_programa <imagen_de_entrada.qt> <archivo_de_salida.pbm>" << std::endl;
             return 1;
         }
     }
